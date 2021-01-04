@@ -17,7 +17,7 @@ describe('  server tests', function() {
           let testdata = ['All I know is 🚀 means buy.',
             '',
             'Anyone still buying NKLA?',
-            '',
+            'nkla',
             'PLTR GANG RISE UP!!!!! This is our year 🚀🚀🚀🚀🚀🚀',
             '',
             'Our ARK Queen hard at work in the Ancient Times 🚀🚀🚀',
@@ -35,9 +35,9 @@ describe('  server tests', function() {
 
           console.log(tokens)
 
-          let filteredResults = ['NKLA', 'nklA',' GME']
+        //  let filteredResults = ['NKLA', 'nklA',' GME']
 
-             let wordTokenDataArray = WordTokenHelper.getWordTokenDataFromRawWordList( filteredResults )
+             let wordTokenDataArray = WordTokenHelper.getWordTokenDataFromRawWordList( tokens )
 
 
 
