@@ -5,7 +5,7 @@
 <Navbar />
 
 <div class="w-full flex flex-wrap w-full my-8 pt-2 bg-gray-800" >
-	<div class="pt-6 md:pt-0  md:flex-1 md:order-last">
+	<div class="hidden pt-6 md:pt-0  md:flex-1 md:order-last">
 
 		<carousel :per-page="1" :autoplay="true" :navigationEnabled="false" :paginationEnabled="false">
 
@@ -24,19 +24,17 @@
 	<div class="w-full p-6 pb-12 md:p-12 md:w-5/12 flex justify-center items-center relative">
 		<div class="w-full relative text-center py-12 px-12 md:p-0 md:text-right">
 
-			<div class='text-gray-200 text-lg'>
-			   Title
-			</div>
+
 
 			<div class='text-gray-400'>
 				 Api endpoint got: {{ myVariable }}
 			</div>
 
 
-			<div class="items-center p-6">
-				<div class="cursor-pointer inline-block bg-yellow-500 text-black px-6 py-3 font-bold text-md hover:bg-gray-400" @click="fetchApiData()" >
-					Button
-				</div>
+			<div class="items-center p-6 text-white">
+			   <div v-for="item in phraseDataArray">
+				 		{{item}}
+				 </div>
 			</div>
 		<!--
 			<h1 class="text-2xl mb-4">You abused the gift of Magic.</h1>
@@ -78,12 +76,12 @@ export default {
   },
   data () {
     return {
-      myVariable: null
+      phraseDataArray:  []
     }
   },
   created () {
 
-
+		this.fetchApiData()
 
 
   },
@@ -92,11 +90,27 @@ export default {
 
 					console.log('start axios' )
 
-				  let response = await axios.get('/api/v1/my_first_api_call')
+				  let response = await axios.get('/api/v1/wallstreetbets')
 
 					this.myVariable = response.data.apiEndpointName
 
 					console.log('got response data', response.data )
+
+					this.phraseDataArray = []
+
+					let allPhraseResults = response.data.outputData.popularPhraseResults
+
+					let allWordTokens = allPhraseResults.map(x => x.wordTokenData)
+
+				  allWordTokens.sort(function (a, b) {
+						  return b.popularity - a.popularity;
+						})
+
+					for(let result of allWordTokens){
+						this.phraseDataArray.push( result  )
+					}
+
+
 			}
 
 

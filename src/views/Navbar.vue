@@ -3,7 +3,7 @@
   <nav class="flex items-center justify-between flex-wrap b  p-4   w-full z-10 top-0" style="background-color:#111">
   		<div class="flex items-center flex-shrink-0 text-white mr-6">
   			<a class="text-white no-underline hover:text-white hover:no-underline" href="#">
-  				<span class="text-lg  pl-2">  Webapp Name  </span>
+  				<span class="text-lg  pl-2">  Web Scraper  </span>
   			</a>
   		</div>
 

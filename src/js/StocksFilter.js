@@ -35,7 +35,7 @@ module.exports = class StocksFilter {
       let filteredTokens = []
 
       for(let token of wordTokens){
-        let isValidWord = ( wordChecker.check( token.toLowerCase() ) ||  customWords.includes(token) )
+        let isValidWord = ( wordChecker.check( token.toLowerCase() ) ||  customWords.includes(token.toLowerCase()) )
 
         if(!isValidWord && token.length >= 2 &&   isNaN(parseInt(token))){
           filteredTokens.push(token)
