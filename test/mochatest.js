@@ -1,5 +1,6 @@
 
 const StocksFilter = require('../src/js/StocksFilter')
+const WordTokenHelper = require('../src/js/WordTokenHelper')
 
 
 var assert = require('chai').assert;
@@ -33,6 +34,15 @@ describe('  server tests', function() {
 
 
           console.log(tokens)
+
+          let filteredResults = ['NKLA', 'nklA',' GME']
+
+             let wordTokenDataArray = WordTokenHelper.getWordTokenDataFromRawWordList( filteredResults )
+
+
+
+                       console.log(wordTokenDataArray)
+
 
         assert.ok(true);
 
