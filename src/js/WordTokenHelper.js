@@ -21,12 +21,12 @@ module.exports = class WordTokenHelper {
         }
 
         wordTokenDataArray.push({
-          rawString: word,
+          rawString: word.toLowerCase(),
           popularity: timesCounted
         })
 
 
-        existingWordTokens.push(word)
+        existingWordTokens.push(word.toLowerCase())
 
       }
 
