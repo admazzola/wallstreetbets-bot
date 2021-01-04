@@ -3,6 +3,7 @@
   "description": "Website template",
   "version": "0.1.0",
   "scripts": {
+    "bot": "node index.js",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "express": "node src/js/express.js",
@@ -13,8 +14,13 @@
   "dependencies": {
     "axios": "^0.21.0",
     "check-word": "^1.1.0",
+    "cheerio": "^1.0.0-rc.5",
     "core-js": "^2.6.5",
+    "crypto-js": "^4.0.0",
+    "delay": "^4.4.0",
+    "mongodb": "^3.6.3",
     "portal-vue": "^2.1.0",
+    "puppeteer": "^5.5.0",
     "tailwindcss": "^1.0.0-beta.4",
     "vue": "^2.6.6",
     "vue-carousel": "^0.18.0",

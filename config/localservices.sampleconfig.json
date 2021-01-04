@@ -1,0 +1,10 @@
+{
+
+  "localservices":{
+    "gameServer":{},
+    "marketServer":{},
+    "relayServer":{},
+    "gridServer":{ "gridServerId":1}
+
+  }
+}

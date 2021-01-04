@@ -1,6 +1,6 @@
 var config = {
 
-    baseurl: 'https://www.reddit.com/r/wallstreetbets.json',
+    sectionsToCrawl: [{sectionName: 'wallstreetbets', baseurl: 'https://www.reddit.com/r/wallstreetbets.json'}]  ,
 
     testMode: true
 
