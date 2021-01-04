@@ -55,8 +55,10 @@ async function startCrawl(){
 
 
        let filteredResults = StocksFilter.filterAllForStockSymbols( rawCrawlResults )
-       let wordTokenDataArray = WordTokenHelper.getWordTokenDataFromRawWordList( filteredResults )
+     
+//  let filteredResults = ['TSLA', 'TSLA', 'PLTR']
 
+   let wordTokenDataArray = WordTokenHelper.getWordTokenDataFromRawWordList( filteredResults )
 
 
          console.log('finished.' )
@@ -70,6 +72,8 @@ async function startCrawl(){
            let defaultScanData = {epoch:0 , sectionName: section.sectionName }
 
            await mongoInterface.insertOne('scanData', defaultScanData)
+         }else{
+           await mongoInterface.updateCustomAndFindOne('scanData',  { sectionName: section.sectionName }, {$inc: {epoch:  1}}  )
          }
 
          existingScanData = await mongoInterface.findOneSorted('scanData', {sectionName: section.sectionName }, {epoch: -1})
@@ -183,7 +187,7 @@ async function startBot()
 {
 
 
-  mongoInterface.init('adventure_'.concat(serverMode), serverConfig[serverMode].mongoServer)
+  await mongoInterface.init('adventure_'.concat(serverMode), serverConfig[serverMode].mongoServer)
 
 
 
