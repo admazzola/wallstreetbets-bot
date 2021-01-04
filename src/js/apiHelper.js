@@ -24,7 +24,7 @@ module.exports = class ApiHelper {
    let recentScanData = await mongoInterface.findOneSorted('scanData', {sectionName: sectionName}, { epoch: -1 } ) //sort descending with -1
 
    let recentScanIndex = recentScanData.epoch
-
+ 
    let popularPhraseResults = await mongoInterface.findAll('popularPhrases', { epoch: recentScanIndex, sectionName: sectionName })
 
    return {success:true,  popularPhraseResults: popularPhraseResults }
