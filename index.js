@@ -55,7 +55,7 @@ async function startCrawl(){
 
 
        let filteredResults = StocksFilter.filterAllForStockSymbols( rawCrawlResults )
-     
+
 //  let filteredResults = ['TSLA', 'TSLA', 'PLTR']
 
    let wordTokenDataArray = WordTokenHelper.getWordTokenDataFromRawWordList( filteredResults )
@@ -191,7 +191,7 @@ async function startBot()
 
 
 
-  let crawlInterval = setInterval(  startCrawl , 15*60*1000 )
+  let crawlInterval = setInterval(  startCrawl , 12*60*60*1000 )
 
   startCrawl()
 
