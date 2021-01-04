@@ -8,7 +8,7 @@ module.exports = class WordTokenHelper {
 
       for(let word of wordList){
 
-        if(existingWordTokens.includes(word)){
+        if(existingWordTokens.includes(word.toLowerCase())){
           continue;
         }
 
