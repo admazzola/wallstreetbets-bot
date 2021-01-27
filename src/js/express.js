@@ -18,7 +18,7 @@ let mongoInterface = new MongoInterface()
   let serverMode = ServerConfigurationHelper.getServerEnvMode()
 
 
- mongoInterface.init('adventure_'.concat(serverMode), serverConfig[serverMode].mongoServer)
+ mongoInterface.init('webscraper_'.concat(serverMode), serverConfig[serverMode].mongoServer)
 
 
 app.use(express.static('dist'))
