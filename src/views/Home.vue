@@ -5,29 +5,23 @@
 <Navbar />
 
 <div class="w-full flex flex-wrap w-full my-8 pt-2 bg-gray-800" >
-	<div class="hidden pt-6 md:pt-0  md:flex-1 md:order-last">
+	<div class=" w-full   ">
 
-		<carousel :per-page="1" :autoplay="true" :navigationEnabled="false" :paginationEnabled="false">
+		   <nav class="tabs flex flex-col sm:flex-row">
 
-			<slide>
-						 Slide 1
-			</slide>
-
-
-			<slide>
-				 		  	Slide 2
-			</slide>
-
-			</carousel>
+			  <div v-for="section of allSections" @click="focusNewSection(section)" class="tab cursor-pointer text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none  " v-bind:class="{ 'active text-blue-500 border-b-2 font-medium border-blue-500': section == focusSection }">
+					{{section}}
+				</div>
+			</nav>
 
 	</div>
-	<div class="w-full p-6 pb-12 md:p-12 md:w-5/12 flex justify-center items-center relative">
-		<div class="w-full relative text-center py-12 px-12 md:p-0 md:text-right">
+
+		<div class="w-full relative text-center py-12 px-12 md:p-0 pt-4 ">
 
 
 
 			<div class='text-gray-400'>
-				 Api endpoint got: {{ myVariable }}
+				 Api endpoint got: {{ apiResponseName }}
 			</div>
 
 
@@ -42,7 +36,7 @@
 		-->
 
 		</div>
-	</div>
+
 </div>
 
 
@@ -66,6 +60,8 @@ import Navbar from './Navbar.vue'
 
 import Footer from './Footer.vue'
 
+const Config = require('../config.js').config
+
 
 const axios = require('axios');
 
@@ -76,23 +72,35 @@ export default {
   },
   data () {
     return {
+			allSections: [],
+			focusSection: null,
+			apiResponseName: '',
       phraseDataArray:  []
     }
   },
   created () {
 
-		this.fetchApiData()
+		this.allSections = Config.sectionsToCrawl.map( x => x.sectionName )
+
+		this.focusNewSection(this.allSections[0])
 
 
   },
   methods: {
-			fetchApiData: async function(){
+		  focusNewSection: function(name){
+				console.log(name)
+
+				this.focusSection = name
+
+					this.fetchApiData( this.focusSection )
+			},
+			fetchApiData: async function( name ){
 
 					console.log('start axios' )
 
-				  let response = await axios.get('/api/v1/wallstreetbets')
+				  let response = await axios.get('/api/v1/'+name)
 
-					this.myVariable = response.data.apiEndpointName
+					this.apiResponseName = response.data.apiEndpointName
 
 					console.log('got response data', response.data )
 

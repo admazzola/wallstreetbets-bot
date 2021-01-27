@@ -187,7 +187,7 @@ async function startBot()
 {
 
 
-  await mongoInterface.init('adventure_'.concat(serverMode), serverConfig[serverMode].mongoServer)
+  await mongoInterface.init('webscraper_'.concat(serverMode), serverConfig[serverMode].mongoServer)
 
 
 
